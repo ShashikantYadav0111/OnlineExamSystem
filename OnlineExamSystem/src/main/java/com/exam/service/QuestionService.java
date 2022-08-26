@@ -10,8 +10,9 @@ public interface QuestionService {
 	public Questions addQuestion(Questions question);
 	public Questions updateQuestion(Questions question);
 	public Set<Questions> getQuestions();
-	public Questions getQuestion(Long qid);
+	public Questions getQuestionById(Long qid);
 	public Set<Questions> getQuestionsOfQuiz(Quiz quiz);
+	public void deleteQuestion(Long qid);
 	
 	
 	

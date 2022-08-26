@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "question")
 public class Questions {
@@ -26,6 +28,7 @@ public class Questions {
 	private String answer;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnore
 	private Quiz quiz;
 
 	public Questions() {

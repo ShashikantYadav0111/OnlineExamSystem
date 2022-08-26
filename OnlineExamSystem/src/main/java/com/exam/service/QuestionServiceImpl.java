@@ -33,13 +33,19 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public Questions getQuestion(Long qid) {
+	public Questions getQuestionById(Long qid) {
 		return this.qu_dao.findById(qid).get();
 	}
 
 	@Override
 	public Set<Questions> getQuestionsOfQuiz(Quiz quiz) {
 		return this.qu_dao.findByQuiz(quiz);
+	}
+
+	@Override
+	public void deleteQuestion(Long quid) {
+		this.qu_dao.deleteById(quid);
+		
 	}
 
 }

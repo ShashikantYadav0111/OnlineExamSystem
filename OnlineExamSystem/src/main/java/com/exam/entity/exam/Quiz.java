@@ -29,6 +29,7 @@ public class Quiz {
 	private boolean active = false; // by default it will be false until admit activates it
 	
 	@ManyToOne(fetch=FetchType.LAZY)
+	@JsonIgnore//never forget it took 2 hours to resolve 
 	private Category category;
 	@OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY,mappedBy = "quiz")//when lazy it means we have to call the getter then only the data gets loaded
 	@JsonIgnore//when we fetch quiz we dont get the data of questions
@@ -42,6 +43,16 @@ public class Quiz {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+
+	public Set<Questions> getQuestions() {
+		return questions;
+	}
+
+
+	public void setQuestions(Set<Questions> questions) {
+		this.questions = questions;
 	}
 
 

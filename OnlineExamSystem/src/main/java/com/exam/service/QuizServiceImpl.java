@@ -16,8 +16,7 @@ public class QuizServiceImpl implements QuizService {//making API's
 	private QuizDao q_dao; 
 	
 	@Override
-	public Quiz addQuiz(Quiz quiz) {
-		
+	public Quiz addQuiz(Quiz quiz) {		
 		return this.q_dao.save(quiz);//when we give new object it creates(save method)
 	}
 
@@ -32,14 +31,13 @@ public class QuizServiceImpl implements QuizService {//making API's
 	}
 
 	@Override
-	public Quiz getQuizById(Long quid) {		
-		return this.q_dao.findById(quid).get();
+	public Quiz getQuizById(Long qid) {	
+		return this.q_dao.findById(qid).get();
 	}
 
 	@Override
-	public void deleteQuiz(Long quid) {
-		this.q_dao.deleteById(quid);
-
+	public void deleteQuiz(Long qid){
+		this.q_dao.deleteById(qid);
 	}
 
 }
