@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Role {
 
 	@Id
-	private Long roleId;
+	private int roleId;
 	private String roleName;
 	
 	//when we take out role then instantly userrole should not come when we call then only its should come
@@ -25,7 +25,7 @@ public class Role {
 	@JsonIgnore
 	private Set<UserRole> userRoles=new HashSet<UserRole>();
 
-	public Role(Long roleId, String roleName) {
+	public Role(int roleId, String roleName) {
 		this.roleId = roleId;
 		this.roleName = roleName;
 	}
@@ -43,11 +43,11 @@ public class Role {
 		this.userRoles = userRoles;
 	}
 
-	public Long getRoleId() {
+	public int getRoleId() {
 		return roleId;
 	}
 
-	public void setRoleId(Long roleId) {
+	public void setRoleId(int roleId) {
 		this.roleId = roleId;
 	}
 

@@ -4,16 +4,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "quiz")
@@ -21,18 +26,19 @@ public class Quiz {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO) // to autoincrement the value
-	private Long qid;
+	private int qid;
 	private String title;
 	private String description;
 	private String maxMarks;
 	private String numberOfQuestions;
 	private boolean active = false; // by default it will be false until admit activates it
 	
+	@Autowired
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JsonIgnore//never forget it took 2 hours to resolve 
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)//important 
 	private Category category;
 	@OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY,mappedBy = "quiz")//when lazy it means we have to call the getter then only the data gets loaded
-	@JsonIgnore//when we fetch quiz we dont get the data of questions
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)//when we fetch quiz we dont get the data of questions
 	private Set<Questions> questions=new HashSet<Questions>();
 	
 	
@@ -61,12 +67,12 @@ public class Quiz {
 	}
 
 
-	public Long getQid() {
+	public int getQid() {
 		return qid;
 	}
 
 
-	public void setQid(Long qid) {
+	public void setQid(int qid) {
 		this.qid = qid;
 	}
 

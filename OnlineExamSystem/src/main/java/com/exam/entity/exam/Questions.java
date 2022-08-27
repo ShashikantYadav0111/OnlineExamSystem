@@ -6,10 +6,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "question")
@@ -17,7 +21,7 @@ public class Questions {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long quesId;
+	private int quesId;
 	@Column(length = 5000)
 	private String content;
 	private String image;
@@ -27,19 +31,20 @@ public class Questions {
 	private String option4;
 	private String answer;
 	
+	@Autowired
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonIgnore
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private Quiz quiz;
 
 	public Questions() {
 
 	}
 
-	public Long getQuesId() {
+	public int getQuesId() {
 		return quesId;
 	}
 
-	public void setQuesId(Long quesId) {
+	public void setQuesId(int quesId) {
 		this.quesId = quesId;
 	}
 

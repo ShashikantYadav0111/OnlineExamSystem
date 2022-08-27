@@ -30,7 +30,7 @@ public class UserController {
 	@PostMapping("/")
 	public User createUser(@RequestBody User user) throws UserAlreadyPresent{ //all JSON data simply comes into this
 		Role role=new Role();
-		role.setRoleId(45L);
+		role.setRoleId(45);
 		role.setRoleName("ADMIN"); //demo code to see the working
 		
 		UserRole userrole=new UserRole();
@@ -51,7 +51,7 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteUser(@PathVariable("id")Long id) {
+	public void deleteUser(@PathVariable("id")int id) {
 		this.uService.deleteUser(id);
 	}
 	

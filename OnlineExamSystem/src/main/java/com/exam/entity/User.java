@@ -1,5 +1,6 @@
 package com.exam.entity;
 
+import java.nio.file.attribute.UserDefinedFileAttributeView;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,11 +17,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private int id;
 	private String username;
 	private String password;
 	private String firstName;
@@ -50,7 +51,7 @@ public class User {
 
 	}
 
-	public User(Long id, String username, String password, String firstName, String lastName, String email,
+	public User(int id, String username, String password, String firstName, String lastName, String email,
 			String phone, boolean enabled, String profile) {
 		this.id = id;
 		this.username = username;
@@ -71,11 +72,11 @@ public class User {
 		this.profile = profile;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

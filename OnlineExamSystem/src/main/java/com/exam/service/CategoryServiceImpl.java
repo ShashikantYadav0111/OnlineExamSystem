@@ -31,14 +31,15 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public Category getCategory(Long categoryId) {
+	public Category getCategory(int categoryId) {
 		return this.c_dao.findById(categoryId).get(); //this returns optional so we do get to get category object as we need to return category
 	}
 
 	@Override
-	public void deleteCategory(Long categoryId) {		
+	public void deleteCategory(int categoryId) {
+		 Category category = new Category();
+	     category.setCid(categoryId);
 		this.c_dao.deleteById(categoryId);
-
 	}
 
 }

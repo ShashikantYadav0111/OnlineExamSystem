@@ -7,6 +7,6 @@ import com.exam.entity.Role;
 import com.exam.entity.exam.Category;
 
 @Repository
-public interface CategoryDao  extends JpaRepository<Category, Long>{
+public interface CategoryDao  extends JpaRepository<Category, Integer>{
 
 }

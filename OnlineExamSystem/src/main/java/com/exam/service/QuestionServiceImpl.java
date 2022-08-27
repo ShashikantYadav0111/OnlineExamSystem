@@ -27,14 +27,13 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public Set<Questions> getQuestions() {
-		
+	public Set<Questions> getQuestions() {		
 		return new HashSet<Questions>(this.qu_dao.findAll());
 	}
 
 	@Override
-	public Questions getQuestionById(Long qid) {
-		return this.qu_dao.findById(qid).get();
+	public Questions getQuestionById(int quid) {
+		return this.qu_dao.findById(quid).get();
 	}
 
 	@Override
@@ -43,9 +42,17 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public void deleteQuestion(Long quid) {
+	public void deleteQuestion(int quid) {
+		Questions questions = new Questions();
+        questions.setQuesId(quid);
 		this.qu_dao.deleteById(quid);
 		
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public Questions get(int quid) {
+		return this.qu_dao.getOne(quid);
 	}
 
 }

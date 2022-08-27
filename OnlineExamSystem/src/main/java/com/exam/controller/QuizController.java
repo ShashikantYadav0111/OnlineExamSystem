@@ -19,8 +19,8 @@ import com.exam.entity.exam.Quiz;
 import com.exam.service.QuizService;
 
 @RestController
-@RequestMapping("/quiz")
 @CrossOrigin("*")
+@RequestMapping("/quiz")
 public class QuizController {
 	
 	@Autowired
@@ -41,13 +41,13 @@ public class QuizController {
 		
 	}
 	@GetMapping("/{qid}")
-	public Quiz getQuizById(@PathVariable("qid") Long qid){
+	public Quiz getQuizById(@PathVariable("qid") int qid){
 		Quiz quiz=this.qService.getQuizById(qid);
 		return quiz;
 		
 	}
 	@DeleteMapping("/{qid}")
-	public void deleteQuizById(@PathVariable("qid") Long qid) {
+	public void deleteQuizById(@PathVariable("qid") int qid) {
 		this.qService.deleteQuiz(qid);
 	}
 	

@@ -23,8 +23,8 @@ import com.exam.service.QuestionService;
 import com.exam.service.QuizService;
 
 @RestController
-@RequestMapping("/questions")
 @CrossOrigin("*")
+@RequestMapping("/questions")
 public class QuestionsController {
 
 	@Autowired
@@ -34,6 +34,8 @@ public class QuestionsController {
 
 	@PostMapping("/")
 	public Questions addQuestions(@RequestBody Questions question) {
+		//Quiz quiz =new Quiz();
+		//quiz.setQid(question.getQuiz().getQid());
 		return this.quService.addQuestion(question);
 	}
 
@@ -47,16 +49,16 @@ public class QuestionsController {
 //	} No need of this why to take out all question the question should come out as per quiz
 	
 	//get single question
-	@GetMapping("/{quid}")//quid can be said as URI variable
-	public Questions getQuestionById(@PathVariable("quid") Long quid){
-		return this.quService.getQuestionById(quid);
+	@GetMapping("/{quesId}")//quid can be said as URI variable//NOT WORKING
+	public Questions getQuestionById(@PathVariable("quesId") int quesId){
+		return this.quService.getQuestionById(quesId);
 		
 	}
 
 
 	// get all question of any respective quiz
-	@GetMapping("/quiz/{qid}")
-	public ResponseEntity<?> getQuestionsOfQuiz(@PathVariable("qid") Long qid){
+	@GetMapping("/quiz/{qid}")//this is quiz id not ques id DONE
+	public ResponseEntity<?> getQuestionsOfQuiz(@PathVariable("qid") int qid){
 		/*Quiz quiz= new Quiz();This quiz only has id it has no data
 		quiz.setQid(qid);
 		return this.quService.getQuestionsOfQuiz(quiz);
@@ -73,9 +75,17 @@ public class QuestionsController {
 		
 	}
 	@DeleteMapping("/{quid}")
-	public void delete(@PathVariable("quid") Long quid) {
+	public void delete(@PathVariable("quid") int quid) {
 		this.quService.deleteQuestion(quid);
 	}
+    @GetMapping("/quiz/all/{qid}")//qid is question Id
+    public ResponseEntity<?> getQuestionsOfQuizAdmin(@PathVariable("qid") int qid) {
+        Quiz quiz = new Quiz();
+        quiz.setQid(qid);
+        Set<Questions> questionsOfQuiz = this.quService.getQuestionsOfQuiz(quiz);
+        return ResponseEntity.ok(questionsOfQuiz);
+
+    }
 }
 
 

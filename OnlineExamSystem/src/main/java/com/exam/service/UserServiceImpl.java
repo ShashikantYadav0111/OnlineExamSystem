@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User createUser(User user, Set<UserRole> userRoles) throws UserAlreadyPresent {
 
-		User local = this.u_dao.findByusername(user.getUsername());// findByusername is take care off by the dao layer
+		User local = this.u_dao.findByUsername(user.getUsername());// findByusername is take care off by the dao layer
 																	// it provides the implementation
 		if (local != null) {
 			System.out.println("User is already there!!");
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 		} else {
 			for (UserRole ur : userRoles) {// taking out role from user roles nd saving it
 				r_dao.save(ur.getRole());// this is to save in RoleDao
-			}
+			}//this for loop is for role table 
 			user.getUserRoles().addAll(userRoles);// then adding all userroles
 			local = this.u_dao.save(user);// then adding user
 		}
@@ -42,12 +42,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUser(String username) {
-		User local = this.u_dao.findByusername(username);
+		User local = this.u_dao.findByUsername(username);
 		return local;
 	}
 
 	@Override
-	public void deleteUser(Long userId) {
+	public void deleteUser(int userId) {
 
 		this.u_dao.deleteById(userId);
 

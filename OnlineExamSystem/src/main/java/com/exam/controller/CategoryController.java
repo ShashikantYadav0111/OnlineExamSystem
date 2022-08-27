@@ -34,7 +34,7 @@ public class CategoryController {
 	
 	//getCategoryById
 	@GetMapping("/{categoryId}")
-	public Category getCategory(@PathVariable("categoryId") Long cid) {
+	public Category getCategory(@PathVariable("categoryId") int cid) {
 		Category category1=this.cSercive.getCategory(cid);
 		return category1;
 	}
@@ -53,7 +53,7 @@ public class CategoryController {
 	
 	//deleteCategory
 	@DeleteMapping("/{categoryId}")
-	public void deleteCategory(@PathVariable("categoryId") Long cid) {
+	public void deleteCategory(@PathVariable("categoryId") int cid) {
 		this.cSercive.deleteCategory(cid);
 	}
 
